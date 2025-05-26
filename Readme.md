@@ -4,6 +4,8 @@ API RESTful para gerenciar opiniões e avaliações de usuários sobre filmes, i
 
 ## Requisitos
 
+## Instalando Python 
+
 sudo apt install python3-venv
 venv
  
@@ -50,10 +52,22 @@ venv
       INFO   Application startup complete.
       INFO   Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 
+## salva no repositorio pela primeira vez
 
-- Docker e Docker Compose
-- Python 3.11
-- Chave OMDb API (http://www.omdbapi.com/)
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/EduardoZava/movi-api.git
+git push -u origin main
+
+## Docker e Docker Compose
+
+
+
+
+
+## Chave OMDb API (http://www.omdbapi.com/)
 
 ## Configuração
 
