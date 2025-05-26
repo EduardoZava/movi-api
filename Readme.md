@@ -71,6 +71,8 @@ git push
 
 ## Docker e Docker Compose
 
+o docker compose veio com um erro de tabulação e foi ajustado
+
 
 
 
