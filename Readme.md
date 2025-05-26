@@ -61,6 +61,14 @@ git branch -M main
 git remote add origin https://github.com/EduardoZava/movi-api.git
 git push -u origin main
 
+## sequencia de atualização do codigo no github
+
+git pull
+git status
+git add .
+git commit -m "alguns ajustes no Readme para ajustar a doc"
+git push
+
 ## Docker e Docker Compose
 
 
