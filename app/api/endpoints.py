@@ -4,7 +4,7 @@ from app.application.services import MovieService
 from app.api.schemas import ReviewCreate, MovieResponse
 from app.adapters.http.omdb_client import OMDbMovieProvider
 from app.adapters.repository.postgres_repository import PostgresMovieRepository
-from infraestructure.db import get_db
+from infraestructure.db.db import get_db
 from sqlalchemy.orm import Session
 
 router = APIRouter()

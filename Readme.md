@@ -4,6 +4,44 @@ API RESTful para gerenciar opiniões e avaliações de usuários sobre filmes, i
 
 ## Requisitos
 
+# alembic
+
+ pip3 install alembic
+ alembic init alembic
+ alembic alembic revision -m "first"
+ alembic revision -m "first"
+ alembic upgrade head
+ 
+
+## ambiente do postgresql
+
+
+ necessitei remover e instalar novamente o postgres no localhost
+
+ systemctl stop postgresql
+ systemctl status postgresql
+
+ 
+
+Remove PostgreSQL packages:
+Open a terminal and run the following command to remove the main package: sudo apt-get --purge remove postgresql.
+To remove any remaining PostgreSQL packages, use the following command: sudo apt-get --purge remove postgresql*.
+Alternatively, you can list all PostgreSQL packages using dpkg -l | grep postgres and then remove them individually using sudo apt-get --purge remove <package_name>.
+
+ezava@ezava-Lenovo:~/dsv/Projetos/architecture_challenge/movie-api$ dpkg -l | grep postgres
+ezava@ezava-Lenovo:~/dsv/Projetos/architecture_challenge/movie-api$ sudo rm -rf /var/lib/postgresql/
+ezava@ezava-Lenovo:~/dsv/Projetos/architecture_challenge/movie-api$ sudo rm -rf /var/log/postgresql/
+ezava@ezava-Lenovo:~/dsv/Projetos/architecture_challenge/movie-api$ sudo rm -rf /etc/postgresql/
+ezava@ezava-Lenovo:~/dsv/Projetos/architecture_challenge/movie-api$ sudo deluser postgres.
+
+instalei novamente
+https://documentation.ubuntu.com/server/how-to/databases/install-postgresql/index.html
+
+
+
+
+
+
 ## Instalando Python 
 
 sudo apt install python3-venv
@@ -11,7 +49,7 @@ venv
  
  python3 -m venv arch_venv
  source arch_venv/bin/activate
- pip install -r requirements.txt
+ pip3 install -r requirements.txt
 
  se der erro remova e crie novamente 
  rm -rf /home/ezava/dsv/Projetos/Achitecture_Challenge/movie-api/arch_vevv
