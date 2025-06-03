@@ -8,7 +8,7 @@ from alembic import context
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Importa o Base das models
-from infrastructure.models import Base  # Ajuste o caminho se necessário
+from infrastructure.models.models import BaseModel  # Ajuste o caminho se necessário
 
 # Configuração do Alembic
 config = context.config
@@ -16,12 +16,21 @@ config = context.config
 # Carrega configuração de log
 if config.config_file_name:
     fileConfig(config.config_file_name)
-
-target_metadata = Base.metadata
+    
+# Importa o modelo Base para metadata
+target_metadata = BaseModel.metadata
 
 # Pega a variável de ambiente DATABASE_URL
-db_url = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/moviedb")
-config.set_main_option("sqlalchemy.url", db_url)
+db_password = os.getenv("DB_PASSWORD", 'xpto1234')  # Use environment variable or default
+ip_local = "127.0.0.1" # Placeholder for local IP, replace with actual IP if needed
+
+# Define the database URL using environment variables or default values
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    f"postgresql+psycopg2://postgres:{db_password}@{ip_local}:5432/moviedb"
+)
+#db_url = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/moviedb")
+config.set_main_option("sqlalchemy.url", DATABASE_URL)
 
 
 def run_migrations_offline():

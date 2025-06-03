@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text
-from infrastructure.db.db import Base
+from infrastructure.db.db import BaseModel
 
-class ReviewModel(Base):
+class ReviewModel(BaseModel):
     __tablename__ = "reviews"
 
     id = Column(Integer, primary_key=True, index=True)

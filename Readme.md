@@ -38,10 +38,6 @@ instalei novamente
 https://documentation.ubuntu.com/server/how-to/databases/install-postgresql/index.html
 
 
-
-
-
-
 ## Instalando Python 
 
 sudo apt install python3-venv
@@ -52,9 +48,9 @@ venv
  pip3 install -r requirements.txt
 
  se der erro remova e crie novamente 
- rm -rf /home/ezava/dsv/Projetos/Achitecture_Challenge/movie-api/arch_vevv
+ rm -rf /home/ezava/dsv/Projetos/Architecture_Challenge/movie-api/arch_vevv
 
- python3 -m venv arch_venv
+ python3 -m venv archvenv
  note que corrigi o nome do ambiente
 
  fastapi run app/main.py primeiro deu um erro pedindo para instalar fastapi standart
