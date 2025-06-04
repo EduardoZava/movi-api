@@ -1,21 +1,24 @@
 from typing import List
-from pydantic import BaseSettings, AnyHttpUrl
+from pydantic_settings import BaseSettings
 
 from sqlalchemy.ext.declarative import declarative_base
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Movie Review API"
     API_V1_STR: str = "/api/v1"
-    IP_LOCAL = "localhost"  # Default IP, can be overridden by environment variable
+    IP_LOCAL: str = "localhost"  # Default IP, can be overridden by environment variable
     DB_PASSWORD: str = "xpto1234"  # Default password, can be overridden by environment variable
-    DB_URL: AnyHttpUrl = "postgresql+psycopg2://postgres:{DB_PASSWORD}@{IP_LOCAL}:5432/moviedb"
+
+    @property
+    def DB_URL(self) -> str:
+        return f"postgresql+psycopg2://postgres:{self.DB_PASSWORD}@{self.IP_LOCAL}:5432/moviedb"
 
     class Config:
         case_sensitive = True
         env_file = ".env"
         env_file_encoding = "utf-8"
 settings = Settings()
-BaseModel = declarative_base()
+Base = declarative_base()
 def get_settings() -> Settings:
     return settings
 def get_database_url() -> str:

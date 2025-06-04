@@ -1,16 +1,16 @@
-from pydantic import BaseModel
+from pydantic import BaseModel as ScBaseModel
 from typing import List
 
-class ReviewCreate(BaseModel):
+class ReviewCreate(ScBaseModel):
     imdb_id: str
     user_opinion: str
     user_rating: int
 
-class ReviewResponse(BaseModel):
+class ReviewResponse(ScBaseModel):
     user_opinion: str
     user_rating: int
 
-class MovieResponse(BaseModel):
+class MovieResponse(ScBaseModel):
     title: str
     year: int
     imdb_id: str
@@ -21,6 +21,6 @@ class MovieResponse(BaseModel):
     plot: str
     reviews: List[ReviewResponse]
 
-class MovieSearchRequest(BaseModel):
+class MovieSearchRequest(ScBaseModel):
     title: str | None = None
     year: int | None = None

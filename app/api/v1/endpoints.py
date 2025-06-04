@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends, Query
 from typing import List, Optional
 from app.application.services import MovieService
-from app.api.schemas import ReviewCreate, MovieResponse
+from app.api.v1.schemas import ReviewCreate, MovieResponse
 from app.adapters.http.omdb_client import OMDbMovieProvider
 from app.adapters.repository.postgres_repository import PostgresMovieRepository
 from infrastructure.db.db import get_db

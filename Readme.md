@@ -85,6 +85,12 @@ venv
       INFO   Waiting for application startup.
       INFO   Application startup complete.
       INFO   Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+# executando projeto
+
+uvicorn app.main:app --host   localhost --port 8000
+
+#chamada aos endpoints
+http://localhost:8000/api/v1/search-movie
 
 ## salva no repositorio pela primeira vez
 

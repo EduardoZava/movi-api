@@ -1,7 +1,7 @@
 from typing import List
 from sqlalchemy.orm import Session
 from app.application.ports import MovieRepositoryPort
-from infrastructure.models.models import ReviewModel
+from infrastructure.models.review_model import ReviewModel
 from app.domain.entities import Review
 
 class PostgresMovieRepository(MovieRepositoryPort):
