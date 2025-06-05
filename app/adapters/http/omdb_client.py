@@ -8,23 +8,29 @@ class OMDbMovieProvider:
         self.base_url = "http://www.omdbapi.com/"
 
     def get_movie_by_imdb_id(self, imdb_id: str) -> Movie | None:
-        params = {"apikey": self.api_key, "i": imdb_id, "plot": "full"}
-        resp = requests.get(self.base_url, params=params)
-        if resp.status_code != 200:
+        params = {"apikey": self.api_key, "i": imdb_id, "plot": "short"}
+        try:
+            resp = requests.get(self.base_url, params=params, timeout=100)
+            if resp.status_code != 200:
+                return None
+            data = resp.json()
+            if data.get("Response") == "False":
+                return None
+            return convert_omdb_to_movie(data)
+        except requests.RequestException:
             return None
-        data = resp.json()
-        if data.get("Response") == "False":
-            return None
-        return convert_omdb_to_movie(data)
     
     def get_movie_details(self, imdb_id: str) -> Movie | None:
-        params = {"apikey": self.api_key, "i": imdb_id}
-        resp = requests.get(self.base_url, params=params)
-        if resp.status_code != 200:
+        params = {"apikey": self.api_key, "i": imdb_id, "plot": "full"}
+        try:
+            resp = requests.get(self.base_url, params=params, timeout=100)
+            if resp.status_code != 200:
+                return None
+            data = resp.json()
+            if data.get("Response") == "False":
+                return None
+            return convert_omdb_to_movie(data)
+        except requests.RequestException:
             return None
-        data = resp.json()
-        if data.get("Response") == "False":
-            return None
-        return convert_omdb_to_movie(data)
         #return self.get_movie_by_imdb_id(imdb_id)
 

@@ -12,7 +12,7 @@ router = APIRouter()
 def get_movie_service(db: Session = Depends(get_db)) -> MovieService:
     repo = PostgresMovieRepository(db)
     # OMDb API key should come from environment/config in real app
-    provider = OMDbMovieProvider(api_key="y38e11782")
+    provider = OMDbMovieProvider(api_key="38e11782")
     service = MovieService(repo, provider)
     return service
 
