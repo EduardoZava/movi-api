@@ -85,6 +85,12 @@ venv
       INFO   Waiting for application startup.
       INFO   Application startup complete.
       INFO   Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+
+#bibliotecas adicionais 
+
+pip3 install pydantic_settings
+pip3 freeze > requirements.txt
+
 # executando projeto
 
 uvicorn app.main:app --host   localhost --port 8000
