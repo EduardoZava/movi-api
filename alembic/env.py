@@ -8,7 +8,7 @@ from alembic import context
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Importa o Base das models
-from infrastructure.models.models import BaseModel  # Ajuste o caminho se necessário
+from infrastructure.models.review_model import BaseModel  # Ajuste o caminho se necessário
 
 # Configuração do Alembic
 config = context.config

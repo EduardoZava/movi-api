@@ -8,8 +8,8 @@ API RESTful para gerenciar opiniões e avaliações de usuários sobre filmes, i
 
  pip3 install alembic
  alembic init alembic
- alembic alembic revision -m "first"
  alembic revision -m "first"
+ alembic revision -m "second"
  alembic upgrade head
  
 
