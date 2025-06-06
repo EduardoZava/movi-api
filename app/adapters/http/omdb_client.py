@@ -34,3 +34,16 @@ class OMDbMovieProvider:
             return None
         #return self.get_movie_by_imdb_id(imdb_id)
 
+    def get_movie_details(self, title: str, year: int) -> Movie | None:
+        params = {"apikey": self.api_key, "t": title, "y": year, "plot": "full"}
+        try:
+            resp = requests.get(self.base_url, params=params, timeout=100)
+            if resp.status_code != 200:
+                return None
+            data = resp.json()
+            if data.get("Response") == "False":
+                return None
+            return convert_omdb_to_movie(data)
+        except requests.RequestException:
+            return None
+

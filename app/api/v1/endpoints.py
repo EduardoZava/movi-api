@@ -22,10 +22,21 @@ def create_review(review: ReviewCreate, service: MovieService = Depends(get_movi
     return {"message": "Review added"}
 
 @router.get("/search-movie", response_model=List[MovieResponse])
-def search_movies(imdb_id: Optional[str] = Query(None), service: MovieService = Depends(get_movie_service)):
-    if not imdb_id:
-        raise HTTPException(status_code=400, detail="imdb_id query parameter required")
-    movie = service.get_consolidated_movie(imdb_id)
+def search_movies(imdb_id: Optional[str] = Query(None),
+                  title: Optional[str] = Query(None),
+                  year: Optional[int] = Query(None),
+                  service: MovieService = Depends(get_movie_service)):
+    if imdb_id:
+        movie = service.get_consolidated_movie(imdb_id)
+    else:
+       if title and year:
+          movie = service.get_consolidated_movie(title=title, year=year)
+       else:
+          raise HTTPException(status_code=400, detail="imdb_id or title and year query parameter required")
+    
     if not movie:
         raise HTTPException(status_code=404, detail="Movie not found")
+    # Convert movie to response model
+    #movie_response = MovieResponse.from_domain(movie)
+    # Return a list with a single movie response
     return [movie]

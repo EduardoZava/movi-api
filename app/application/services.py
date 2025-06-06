@@ -18,3 +18,11 @@ class MovieService:
         reviews = self.repo.get_reviews_by_imdb_id(imdb_id)
         movie.reviews = reviews
         return movie
+    
+    def get_consolidated_movie(self, title: str, year: int) -> Movie | None:
+        movie = self.provider.get_movie_details(title=title, year=year)
+        if not movie:
+            return None
+        #reviews = self.repo.get_reviews_by_imdb_id(imdb_id)
+        #movie.reviews = reviews
+        return movie
