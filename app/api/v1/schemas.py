@@ -1,5 +1,6 @@
 from pydantic import BaseModel as ScBaseModel
-from typing import List
+from pydantic import model_validator
+from typing import List, Optional
 
 class ReviewCreate(ScBaseModel):
     imdb_id: str
@@ -22,5 +23,14 @@ class MovieResponse(ScBaseModel):
     reviews: List[ReviewResponse]
 
 class MovieSearchRequest(ScBaseModel):
-    title: str | None = None
-    year: int | None = None
+    imdb_id: Optional[str] = None
+    title: Optional[str] = None
+    year: Optional[int] = None
+
+    @model_validator(mode="after")
+    def validate_search(self):
+        if self.imdb_id:
+            return self
+        if self.title and self.year:
+            return self
+        raise ValueError("Você deve informar imdb_id OU title e year juntos.")

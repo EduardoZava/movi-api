@@ -13,5 +13,8 @@ class MovieRepositoryPort(ABC):
 
 class MovieProviderPort(ABC):
     @abstractmethod
-    def get_movie_details(self, imdb_id: str) -> Movie | None:
+    def get_movie_details_by_imdb(self, imdb_id: str) -> Movie | None:
+        pass
+    @abstractmethod
+    def get_movie_details(self, title: str,year: str) -> Movie | None:
         pass

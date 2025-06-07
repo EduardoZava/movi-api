@@ -11,8 +11,8 @@ class MovieService:
         review = Review(user_opinion=user_opinion, user_rating=user_rating)
         self.repo.save_review(imdb_id, review)
 
-    def get_consolidated_movie(self, imdb_id: str) -> Movie | None:
-        movie = self.provider.get_movie_details(imdb_id)
+    def get_consolidated_movie_by_imdb(self, imdb_id: str) -> Movie | None:
+        movie = self.provider.get_movie_details_by_imdb(imdb_id)
         if not movie:
             return None
         reviews = self.repo.get_reviews_by_imdb_id(imdb_id)
@@ -23,6 +23,6 @@ class MovieService:
         movie = self.provider.get_movie_details(title=title, year=year)
         if not movie:
             return None
-        #reviews = self.repo.get_reviews_by_imdb_id(imdb_id)
-        #movie.reviews = reviews
+        reviews = self.repo.get_reviews_by_imdb_id(movie.imdb_id)
+        movie.reviews = reviews
         return movie
